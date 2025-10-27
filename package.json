@@ -1,0 +1,37 @@
+{
+    "name": "furniture-management-app",
+    "version": "1.0.0",
+    "description": "Application de gestion des meubles pour designer artisan",
+    "main": "server/index.js",
+    "scripts": {
+        "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+        "server:dev": "cd server && npm run dev",
+        "client:dev": "cd client && npm start",
+        "build": "npm run client:build && npm run server:build",
+        "client:build": "cd client && npm run build",
+        "server:build": "cd server && npm run build",
+        "start": "cd server && npm start",
+        "install:all": "npm install && cd client && npm install && cd ../server && npm install",
+        "test": "npm run client:test && npm run server:test",
+        "client:test": "cd client && npm test",
+        "server:test": "cd server && npm test"
+    },
+    "keywords": [
+        "furniture",
+        "management",
+        "react",
+        "express",
+        "mariadb",
+        "typescript"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devDependencies": {
+        "concurrently": "^8.2.2"
+    },
+    "workspaces": [
+        "client",
+        "server",
+        "shared"
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "name": "furniture-shared",
+    "version": "1.0.0",
+    "description": "Types et utilitaires partagés entre client et serveur",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.2"
+    }
+}
