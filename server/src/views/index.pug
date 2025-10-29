@@ -1,0 +1,72 @@
+doctype html
+html(lang='fr')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title
+    style.
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #4b58a2ff 100%);
+        color: white;
+        min-height: 100vh;
+      }
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      .api-info {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+      }
+      .endpoint {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        border-radius: 5px;
+        font-family: monospace;
+        margin: 0.5rem 0;
+      }
+      .status {
+        color: #4CAF50;
+        font-weight: bold;
+      }
+  body
+    .container
+      h1= title
+      p.status ✅ API Status: Online
+      .api-info
+        p= message
+        p 
+          strong Endpoints disponibles:
+        .endpoint GET /api/health - Vérification de l'état du serveur
+        .endpoint GET / - Page d'accueil (cette page)
+      .api-info
+        p 
+          strong Technologies:
+        ul
+          li Express.js + TypeScript
+          li MariaDB + MySQL (à configurer)
+          li JWT Authentication (à implémenter)
+          li Pug Template Engine
+      .api-info
+        p 
+          strong Prochaines étapes:
+        ul
+          li Configuration de la base de données MongoDB
+          li Implémentation des modèles (User, Furniture, Material, Supplier)
+          li Création des routes API (auth, furniture, materials, statistics)
+          li Tests API
+      p 
+        em Furniture Management API - Version 1.0.0
