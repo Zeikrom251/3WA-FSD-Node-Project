@@ -5,13 +5,16 @@ import App from "./App"
 import "./index.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "@fortawesome/fontawesome-free/css/all.min.css"
+import { AuthProvider } from "./contexts"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

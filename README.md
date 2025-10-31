@@ -29,7 +29,7 @@ Furniture management application for artisan designers.
 - **Materials**: Wood (ash, oak, walnut), Metal (stainless steel, aluminum), Plastic
 - **Suppliers**: BBois, MetaLo, pPlastique
 
-## Installation
+## Installation and usage
 
 ```bash
 npm install
