@@ -1,3 +1,5 @@
+import AuthService, { LoginCredentials } from "../services/auth.service"
+import { User } from "@/types"
 import {
   useState,
   useEffect,
@@ -6,22 +8,12 @@ import {
   ReactNode,
 } from "react"
 
-interface User {
-  id: number
-  email: string
-  role: string
-}
-
-interface LoginCredentials {
-  email: string
-  password: string
-}
-
 interface AuthContextType {
   user: User | null
   isLoading: boolean
   isAuthenticated: boolean
   login: (credentials: LoginCredentials) => Promise<void>
+  logout: () => Promise<void>
   setUser: (user: User | null) => void
 }
 
@@ -36,8 +28,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const checkAuth = async () => {
       const token = localStorage.getItem("authToken")
       if (token) {
-        // const userData = await authService.verifyToken();
-        // setUser(userData);
+        const userData = await AuthService.verifyToken()
+        setUser(userData)
         setIsAuthenticated(true)
       }
       setIsLoading(false)
@@ -48,15 +40,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (credentials: LoginCredentials) => {
     try {
       setIsLoading(true)
-      // const response = await authService.login(credentials);
-      // if (response.token) {
-      //   localStorage.setItem('authToken', response.token);
-      //   setUser(response.user);
-      //   setIsAuthenticated(true);
-      // }
+      const response = await AuthService.login(credentials)
+      if (response.token) {
+        localStorage.setItem("authToken", response.token)
+        setUser(response.user)
+        setIsAuthenticated(true)
+      }
       setTimeout(() => {
-        localStorage.setItem("authToken", "fake-token")
-        setUser({ id: 1, email: credentials.email, role: "user" })
+        localStorage.setItem("authToken", response.token)
+        setUser(response.user)
         setIsAuthenticated(true)
         setIsLoading(false)
       }, 1000)
@@ -68,11 +60,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }
 
+  const logout = async () => {
+    try {
+      await AuthService.logout()
+    } catch (error) {
+      throw error
+    } finally {
+      localStorage.removeItem("authToken")
+      sessionStorage.removeItem("userId")
+      setUser(null)
+      setIsAuthenticated(false)
+    }
+  }
+
   const value: AuthContextType = {
     user,
     isLoading,
     isAuthenticated,
     login,
+    logout,
     setUser,
   }
 

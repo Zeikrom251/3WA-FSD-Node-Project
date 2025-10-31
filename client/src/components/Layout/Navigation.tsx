@@ -17,14 +17,6 @@ const Navigation: React.FC = () => {
               <i className='fas fa-home me-1'></i>
               Accueil
             </Nav.Link>
-            <Nav.Link as={Link} to='/furniture'>
-              <i className='fas fa-couch me-1'></i>
-              Meubles
-            </Nav.Link>
-            <Nav.Link as={Link} to='/materials'>
-              <i className='fas fa-hammer me-1'></i>
-              Matériaux
-            </Nav.Link>
             <Nav.Link as={Link} to='/statistics'>
               <i className='fas fa-chart-bar me-1'></i>
               Statistiques
